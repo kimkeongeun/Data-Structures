@@ -88,6 +88,29 @@ int main()
 void RecursiveReverse(ListNode **ptrHead)
 {
 	/* add your code here */
+	//재귀적으로 해라
+	//끝과 지금을 뒤집어라
+	//오름차순을 내림차순으로 바꾸는 것과 비슷
+	//1. 교환하고
+	//재귀???
+
+	ListNode *cur, *pre;
+	cur=*ptrHead;
+	int i = 0;
+
+	//다음 노드가 끝노드가 아니라면 재귀로 끝까지 감
+	if(cur->next != NULL){
+		RecursiveReverse(&(cur->next));
+	}
+
+	//지금값을 끝까지 보냄
+	while(cur->next != NULL){
+		pre = cur->next;
+		i = cur->item;
+		cur->item = pre->item;
+		pre->item = i;
+		cur = cur->next;
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
