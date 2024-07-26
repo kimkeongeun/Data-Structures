@@ -86,7 +86,65 @@ int main()
 
 void moveEvenItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	ListNode *cur, *evns, *evne, *odn; // 홀 짝
+	cur = ll->head;
+
+	// 첫번째 노드가 짝수임
+	if (cur != NULL && (cur->item) % 2 == 0)
+	{
+		evns = cur;
+		odn = evns;
+		// 홀수 탐색
+		while (odn != NULL && (odn->item) % 2 == 0)
+		{
+			evne = odn;
+			odn = evne->next;
+		}
+
+		// 홀수가 있었다면
+		if (odn != NULL && (odn->item) % 2 != 0)
+		{
+			ll->head = odn;
+			evne->next = odn->next;
+			odn->next = evns;
+		}
+		else
+		{
+			return;
+		}
+	}
+	cur = ll->head;
+
+	while (cur != NULL)
+	{
+		if (cur->next != NULL && (cur->next->item) % 2 == 0) // 다음 노드가 짝수일때
+		{
+			evns = cur->next;
+			odn = evns;
+			// 홀수 탐색
+			while (odn != NULL && (odn->item) % 2 == 0)
+			{
+				evne = odn;
+				odn = evne->next;
+			}
+
+			// 홀수가 있었다면
+
+			if (odn != NULL && (odn->item) % 2 != 0)
+			{
+				cur->next = odn;
+				evne->next = odn->next;
+				odn->next = evns;
+			}
+			else
+			{
+				return;
+			}
+		}
+		cur = cur->next;
+	}
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
