@@ -86,7 +86,33 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	ListNode *cur, *odns, *odne, *evn; //홀 짝
+	cur = ll->head;
+	while(cur != NULL){
+		if ( cur->next != NULL && (cur->next->item)%2 != 0 ) //다음 노드가 홀수일때
+		{
+			odns = cur->next;
+			evn = odns;
+			//짝수 탐색
+			while(evn != NULL && (evn->item)%2 != 0){
+				odne = evn;
+				evn = odne->next;
+			}
+
+			//짝수가 있었다면
+
+			if ( evn != NULL && (evn->item)%2 == 0 ){
+				cur->next = evn;
+				odne->next = evn->next;
+				evn->next = odns;
+			}else{
+				return;
+			}
+		}
+		cur = cur->next;
+	}
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
