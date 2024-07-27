@@ -103,6 +103,22 @@ int main()
 int hasGreatGrandchild(BTNode *node)
 {
 	/* add your code here */
+
+    //자식, 손자, 증손자 총 3개 이상 있어야한다는 뜻인듯.
+
+    if(node==NULL)
+        return 0;
+    
+    int count_c = hasGreatGrandchild(node->left);
+    int R = hasGreatGrandchild(node->right);
+
+    if(count_c<R)
+        count_c=R;
+    
+    if (count_c>=3)
+        printf("%d\n", node->item);
+    
+    return count_c+1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
