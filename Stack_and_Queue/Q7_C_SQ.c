@@ -104,7 +104,58 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+	Stack opens;
+	opens.ll.head =NULL;
+	opens.ll.size =0;
+	int i = 0;
+	char popi;
+
+	while(1){
+		//여는괄호면 스택에 넣음
+		//닫는괄호면 pop해서 비교함
+		//아닌 문자가 나오면 끝남을 체크하고, 스택에 남아있지않다면 true 출력
+		char item = expression[i];
+		switch (item)
+		{
+		case '(':
+			push(&opens, 1);
+			break;
+		case '[':
+			push(&opens, 2);
+			break;
+		case '{':
+			push(&opens, 3);
+			break;
+		case ')':
+			popi=pop(&opens);
+			if(popi != 1){
+				return 1;
+			}
+			break;
+		case ']':
+			popi=pop(&opens);
+			if(popi != 2){
+				return 1;
+			}
+			break;
+		case '}':
+			popi=pop(&opens);
+			if(popi != 3){
+				return 1;
+			}
+			break;
+		default:
+			if(opens.ll.size == 0){
+				return 0;
+			}else{
+				return 1;
+			}
+			break;
+		}
+		i++;
+	}
+
+	return 1;
 }
 
 ////////////////////////////////////////////////////////////
