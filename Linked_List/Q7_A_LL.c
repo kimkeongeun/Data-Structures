@@ -94,6 +94,8 @@ void RecursiveReverse(ListNode **ptrHead)
 	//1. 교환하고
 	//재귀???
 
+	//첫번째 풀이 (값을 수동으로 바꿈)
+	/* 
 	ListNode *cur, *pre;
 	cur=*ptrHead;
 	int i = 0;
@@ -111,6 +113,50 @@ void RecursiveReverse(ListNode **ptrHead)
 		pre->item = i;
 		cur = cur->next;
 	}
+	return;
+	*/
+
+	//두번째 풀이
+	/*
+	if(*ptrHead == NULL || (*ptrHead)->next ==NULL){
+		return;
+	}
+
+	ListNode *cur, *rest;
+	cur = *ptrHead;
+	rest= cur->next;
+
+	RecursiveReverse(&(rest));
+
+	*ptrHead = rest;
+
+	while(rest->next != NULL){
+		rest = rest->next;
+	}
+	
+	rest->next = cur;
+	cur->next = NULL;
+	
+
+	return;
+	*/
+
+	//정답 풀이
+	if(*ptrHead == NULL || (*ptrHead)->next == NULL){
+        return;
+    }
+
+    ListNode *cur = *ptrHead;
+    ListNode *next = cur->next;
+
+    RecursiveReverse(&next);
+
+	//while 돌릴 필요 없이, 기존 next의 주소에 ptrHead의 값이 담겨있기 때문에 쭉 넘겨주면 됨. 
+    cur->next->next = cur;//다음 노드가 자신을 가리키게끔
+    cur->next = NULL; //마지막 노드가 될 테니 null 처리
+    *ptrHead = next;
+
+    return;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
