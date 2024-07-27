@@ -116,7 +116,35 @@ int main()
 int identical(BTNode *tree1, BTNode *tree2)
 
 {
-   /* add your code here */
+    //1. 두 트리가 둘다 비어있을 경우 두 트리는 동일 (1)
+    //2. 한 트리만 비어있다면... 두 트리는 다름(0)
+    if (tree1 == NULL)
+    {
+        if (tree2==NULL)
+        {
+            return 1;
+        }
+        return 0;
+    }
+
+    if (tree2==NULL)
+    {
+        return 0;
+    }
+    
+    //3. 탐색하면서 두 트리의 값이 같은지, 한쪽만 비어있진 않은지 체크.
+    // 다른 값이 나왔다면 0 반환.
+    if (!identical(tree1->left, tree2->left)){
+        return 0;
+    }
+
+    if (!identical(tree1->right, tree2->right))
+    {
+        return 0;
+    }
+
+    //모두 탐색했는데 살아있음. 두 트리 동일.
+    return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
