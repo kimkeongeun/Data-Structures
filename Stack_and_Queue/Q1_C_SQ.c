@@ -116,12 +116,52 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	//만약에 큐가 비어있지 않다면
+	//아래 함수써서 비우고 시작
+	if( q->ll.size != 0){
+		removeAllItemsFromQueue(q);
+	}
+
+	q->ll.head = ll->head;
+	q->ll.size = ll->size;
+	ll->head = NULL;
+	ll->size = 0;
+
+	//이제 ll에 있는 걸 큐에 넣음
 }
 
 void removeOddValues(Queue *q)
 {
-	/* add your code here */
+	//홀수값만 지워라
+	ListNode *odd = q->ll.head;
+	ListNode *pre = odd->next;
+
+	//첫번째 값이 홀수일때 경우
+	while(odd !=NULL && odd->item%2 != 0){
+		q->ll.head = pre;
+		free(odd);
+		q->ll.size--;
+		odd=pre;
+		pre=odd->next;
+	}
+
+	pre = odd;
+	odd = pre->next;
+
+	//아닐때
+	while(odd != NULL){
+		if((odd->item%2) != 0){ //홀수라면
+			pre->next = odd->next;
+			free(odd);
+			q->ll.size--;
+			odd = pre->next;
+		}else{
+			pre = pre->next;
+			odd = odd->next;
+		}
+	}
+
+	return;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
