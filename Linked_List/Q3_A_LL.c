@@ -84,6 +84,8 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
+	//원래 내 코드
+	/*
 	ListNode *cur, *odns, *odne, *evn; // 홀 짝
 	cur = ll->head;
 
@@ -143,6 +145,76 @@ void moveOddItemsToBack(LinkedList *ll)
 	}
 
 	return;
+	*/
+
+	//gpt가 정리해준 내 코드
+	/*
+    if (ll->head == NULL) return;
+
+    ListNode *cur = ll->head, *prev = NULL, *last = ll->head, *end = NULL;
+
+    // 리스트의 마지막 노드를 찾는다.
+    while (last->next != NULL) {
+        last = last->next;
+    }
+    end = last;
+
+    while (cur != end) {
+        if (cur->item % 2 != 0) { // 현재 노드가 홀수일 때
+            if (prev) prev->next = cur->next;
+            else ll->head = cur->next;
+
+            last->next = cur;
+            cur->next = NULL;
+            last = cur;
+            cur = (prev) ? prev->next : ll->head;
+        } else {
+            prev = cur;
+            cur = cur->next;
+        }
+    }
+
+    // 마지막 노드가 홀수일 때 처리
+    if (cur->item % 2 != 0) {
+        if (prev) prev->next = cur->next;
+        else ll->head = cur->next;
+
+        last->next = cur;
+        cur->next = NULL;
+    }
+	*/
+
+	//홀수를 뒤로 보내버리는 식으로
+
+	ListNode *end, *odd, *pre, *cur;
+	pre = NULL;
+	cur = ll->head;
+	odd = end = findNode(ll, ll->size-1);
+
+	while(cur){
+		if(cur->item%2!=0){
+			odd->next = cur;
+			odd=cur;
+			if(pre==NULL){
+				ll->head = cur->next;
+				cur=ll->head;
+			}else{
+				pre->next = cur->next;
+				cur=pre->next;
+			}
+			odd->next=NULL;
+			if(odd==end)
+				return;
+			
+		}else{
+			if(cur==end)
+				return;
+			pre=cur;
+			cur=cur->next;
+		}
+	}
+	return;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

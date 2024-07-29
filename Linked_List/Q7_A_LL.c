@@ -148,6 +148,7 @@ void RecursiveReverse(ListNode **ptrHead)
 
     ListNode *cur = *ptrHead;
     ListNode *next = cur->next;
+	ListNode *n;
 
     RecursiveReverse(&next);
 
