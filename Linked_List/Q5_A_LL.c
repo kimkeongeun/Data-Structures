@@ -102,49 +102,52 @@ int main()
 
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
-	/* add your code here */
-	ListNode *cur, *pra;
+	ListNode *cur, *node;
 	int f = ll->size/2;
 	int b = f;
+
+	//두 리스트의 사이즈를 정한 뒤, 짝수가 아닐 경우 첫번째 리스트의 크기를 1 늘림
 	if (ll->size%2 != 0){
 		f++;
 	}
 
+	//정해진 사이즈만큼 첫번째 리스트에 값을 옮겨넣음
 	if (f>0){
 		cur = ll->head;
-		pra = resultFrontList->head;
+		node = resultFrontList->head;
 		resultFrontList->head = malloc(sizeof(ListNode));
 		resultFrontList->head->item = cur->item;
-		resultFrontList->head->next = pra;
+		resultFrontList->head->next = node;
 		resultFrontList->size++;
 		cur = cur->next;
-		pra = resultFrontList->head;
+		node = resultFrontList->head;
 	}
 
 	while (resultFrontList->size != f){
-		pra->next = malloc(sizeof(ListNode));
-		pra->next->item = cur->item;
+		node->next = malloc(sizeof(ListNode));
+		node->next->item = cur->item;
 		resultFrontList->size++;
 		cur = cur->next;
-		pra = pra->next;
+		node = node->next;
 	}
 
+	//정해진 사이즈만큼 두번째 리스트에 값을 옮겨넣음
 	if (b>0){
-		pra = resultBackList->head;
+		node = resultBackList->head;
 		resultBackList->head = malloc(sizeof(ListNode));
 		resultBackList->head->item = cur->item;
-		resultBackList->head->next = pra;
+		resultBackList->head->next = node;
 		resultBackList->size++;
 		cur = cur->next;
-		pra = resultBackList->head;
+		node = resultBackList->head;
 	}
 
 	while (resultBackList->size != b){
-		pra->next = malloc(sizeof(ListNode));
-		pra->next->item = cur->item;
+		node->next = malloc(sizeof(ListNode));
+		node->next->item = cur->item;
 		resultBackList->size++;
 		cur = cur->next;
-		pra = pra->next;
+		node = node->next;
 	}
 	return;
 }

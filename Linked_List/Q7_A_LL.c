@@ -87,13 +87,6 @@ int main()
 
 void RecursiveReverse(ListNode **ptrHead)
 {
-	/* add your code here */
-	//재귀적으로 해라
-	//끝과 지금을 뒤집어라
-	//오름차순을 내림차순으로 바꾸는 것과 비슷
-	//1. 교환하고
-	//재귀???
-
 	//첫번째 풀이 (값을 수동으로 바꿈)
 	/* 
 	ListNode *cur, *pre;
@@ -116,8 +109,8 @@ void RecursiveReverse(ListNode **ptrHead)
 	return;
 	*/
 
-	//두번째 풀이
-	/*
+	//두번째 풀이 (포인터 사용)
+	///*
 	if(*ptrHead == NULL || (*ptrHead)->next ==NULL){
 		return;
 	}
@@ -139,9 +132,10 @@ void RecursiveReverse(ListNode **ptrHead)
 	
 
 	return;
-	*/
+	//*/
 
-	//정답 풀이
+	//적혀있던 정답 풀이
+	/*
 	if(*ptrHead == NULL || (*ptrHead)->next == NULL){
         return;
     }
@@ -158,6 +152,7 @@ void RecursiveReverse(ListNode **ptrHead)
     *ptrHead = next;
 
     return;
+	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////
