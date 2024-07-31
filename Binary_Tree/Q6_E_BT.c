@@ -108,11 +108,13 @@ void printSmallerValues(BTNode *node, int m)
     if(node==NULL)
         return;
     
+    //조건값보다 지금 값이 낮으면 출력
     if(node->item < m){
         printf("%d", node->item);
         printf(" ");
     }
-    
+
+    //하위 노드도 검사    
     printSmallerValues(node->left, m);
     printSmallerValues(node->right, m);
 

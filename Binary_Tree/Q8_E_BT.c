@@ -102,23 +102,24 @@ int main()
 
 int hasGreatGrandchild(BTNode *node)
 {
-	/* add your code here */
-
-    //자식, 손자, 증손자 총 3개 이상 있어야한다는 뜻인듯.
+    //자식, 손자, 증손자 이상. 하위 노드의 깊이가 3 이상이어야 한다는 뜻인듯.
 
     if(node==NULL)
         return 0;
     
+    //자식노드의 갯수 가져옴
     int count_c = hasGreatGrandchild(node->left);
     int R = hasGreatGrandchild(node->right);
 
+    //오른쪽 왼쪽 중 더 깊은 값을 저장
     if(count_c<R)
         count_c=R;
     
-    if (count_c>=3)
+    //깊이가 3 이상이면 출력
+    if (count_c>2)
         printf("%d\n", node->item);
     
-    return count_c+1;
+    return count_c+1; //본인 포함한 깊이 반환
 }
 
 //////////////////////////////////////////////////////////////////////////////////

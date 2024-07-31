@@ -107,15 +107,17 @@ int smallestValue(BTNode *node)
     
     int min_n = node->item;
 
+    //왼쪽 노드들의 최솟값 가져옴
     int a = smallestValue(node->left);
-    if (a != 0 && min_n>a)
+    if (a != 0 && min_n>a) //비교
         min_n = a;
 
+    //오른족 노드들의 최솟값
     a = smallestValue(node->right);
-    if (a !=0 && min_n>a)
+    if (a !=0 && min_n>a) //비교
         min_n = a;    
 
-    return min_n;
+    return min_n; //최솟값 반환
 }
 
 //////////////////////////////////////////////////////////////////////////////////

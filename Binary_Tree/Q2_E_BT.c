@@ -96,8 +96,6 @@ int main()
 
 int maxHeight(BTNode *node)
 {
-    /* add your code here */
-
     //최대 높이 저장함
     int max = 0;
 

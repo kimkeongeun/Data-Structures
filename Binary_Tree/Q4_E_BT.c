@@ -107,13 +107,15 @@ int sumOfOddNodes(BTNode *node)
     if(node==NULL)
         return 0;
 
+    //하위 노드들의 홀수 노드들의 합 가져옴
     sum_n += sumOfOddNodes(node->left);
     sum_n += sumOfOddNodes(node->right);
 
+    //자신이 홀수 노드라면, 자신의 값도 더함
     if(node->item%2 != 0)
         sum_n += node->item;
     
-    return sum_n;
+    return sum_n; //반환
 }
 
 //////////////////////////////////////////////////////////////////////////////////
