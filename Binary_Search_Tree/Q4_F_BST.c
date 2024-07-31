@@ -92,38 +92,46 @@ int main()
 void postOrderIterativeS1(BSTNode *root)
 {
 	BSTNode *node=root;
-	BSTNode *Ntop;
+	//후위순회를 위한 스택
 	Stack s;
 	s.top=NULL;
-	int cheak = 0;
+
+	//이미 출력한 노드를 출력 안하기 위해 만듦
+	int check = 0;
+
 
 	while(s.top!=NULL || node){
+
+		//자식을 스택에 넣는 반복문
 		while (node->left!=NULL || node->right!=NULL)
 		{
+			//왼쪽 노드가 존재하고, 그 노드를 이미 방문했을때 탈출
 			if(node->left!=NULL)
-				if(cheak==node->left->item)
+				if(check==node->left->item)
 					break;
+			//오른쪽 노드가 존재하고, 그 노드를 이미 방문했을때 탈출
 			if(node->right!=NULL)
-				if(cheak==node->right->item)
+				if(check==node->right->item)
 					break;
-			if(node==NULL)
-				break;
 					
-			push(&s,node);
-			if(node->right!=NULL){
+			push(&s,node); //지금 노드를 넣고
+			if(node->right!=NULL){ //오른쪽 자식 노드를 넣음
 				push(&s,node->right);
 			}
 
-			if(node->left==NULL){
+			if(node->left==NULL){ //왼쪽 자식이 없다면, 
 				node=pop(&s);
 				continue;
 			}
-			node=node->left;
+			node=node->left; //왼쪽 자식으로 이동
 		}
 
-		cheak = node->item;
-		printf("%d", cheak);
+		//이미 방문한 노드 다시 스택에 넣는 것 방지
+		check = node->item;
+		printf("%d", check);
 		printf(" ");
+
+		//다음 노드 검사
 		node=pop(&s);
 	}
 	return;	

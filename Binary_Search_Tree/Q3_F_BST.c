@@ -92,19 +92,24 @@ int main()
 void preOrderIterative(BSTNode *root)
 {
 	BSTNode *node=root;
+
+	//전위순회를 도울 스택. 초기에 root 노드를 담음.
 	Stack s;
 	s.top=NULL;
 	push(&s,node);
+
 
 	while(s.top!=NULL){	
 		node = pop(&s);
 
 		if(node==NULL)
 			continue;
-	
+
+		//자신을 출력한 뒤, 자식 노드를 넣음
 		printf("%d",node->item);
 		printf(" ");
 
+		//스택이므로 오른쪽>왼쪽 순으로 넣어야 왼쪽>오른쪽 순으로 출력.
 		if(node->right!=NULL)
 			push(&s,node->right);
 

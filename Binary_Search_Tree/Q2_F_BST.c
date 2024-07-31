@@ -94,17 +94,22 @@ void inOrderTraversal(BSTNode *root)
 	Stack s;
 	s.top=NULL;
 
+	//중위순회. 스택에 값이 없고, node의 값이 NULL일때 종료
 	while(s.top!=NULL || node){
+
+		//왼쪽 자식을 쭉 따라가며 모두 스택에 넣음
 		while (node)
 		{
 			push(&s,node);
 			node=node->left;
 		}
-		
+
+		//제일 왼쪽의 노드가 pop 됨. 출력		
 		node = pop(&s);
 		printf("%d",node->item);
 		printf(" ");
 
+		//오른쪽 노드로 이동. 노드가 없다면 부모 노드를 pop하고, 있다면 그 노드의 왼쪽자식부터 다시 스택에 담게됨.
 		node = node->right;
 	}
 

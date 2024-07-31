@@ -124,8 +124,55 @@ void postOrderIterativeS2(BSTNode *root)
    deletes the key and returns the new root. Make recursive function. */
 BSTNode* removeNodeFromTree(BSTNode *root, int value)
 {
-	/* add your code here */
+	/* 이진 검색 트리와 키가 주어지면 이 함수는 키를 삭제하고 새 루트를 반환합니다. 재귀 함수를 만듭니다. */
 	//재귀써서 다 삭제하고 새로 반환
+	BSTNode *temp, *next_n;
+
+	//값이 없다면 그냥 되돌아감
+	  if (root == NULL) {
+        return root;
+    }
+	
+	//값이 일치한다면 삭제 후 이것저것 함
+	if (root->item == value)
+	{		
+		//만약 자식이 없거나 하나만 있는 노드라면
+        if (root->left == NULL) {
+            temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            temp = root->left;
+            free(root);
+            return temp;
+        }else{
+			//자식이 둘 다 있다면 오른쪽 노드 중 제일 작은 노드 가져옴
+			temp = root->right;
+            next_n = temp;
+
+            while (next_n->left != NULL) {
+                temp = next_n;
+                next_n = next_n->left;
+            }
+
+            if (next_n != root->right) {
+                temp->left = next_n->right;
+                next_n->right = root->right;
+            }
+
+            next_n->left = root->left;
+            free(root);
+            return next_n;
+		}
+	}
+
+	if(root->item<value){
+		root->right = removeNodeFromTree(root->right, value);
+	}else if(root->item>value){
+		root->left = removeNodeFromTree(root->left, value);
+	}
+
+	return root;
 }
 ///////////////////////////////////////////////////////////////////////////////
 

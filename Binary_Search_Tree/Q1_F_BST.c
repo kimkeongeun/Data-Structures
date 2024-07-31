@@ -95,22 +95,25 @@ void levelOrderTraversal(BSTNode* root)
 {
 	BSTNode *node=root;
 
+	//새로운 queue 선언
     Queue q;
 	q.head = NULL;
 	q.tail =NULL;
 
+	//루트 노드 넣음
 	enqueue(&q.head, &q.tail, root);
 
-	//루트 노드 넣음
-
+	//BFS 식으로 출력.
 	while (q.head != NULL)
 	{
+		//큐에서 꺼내고, 본인 출력
 		node = dequeue(&q.head, &q.tail);
 		if(node == NULL)
 			continue;
 		printf("%d", node->item);
 		printf(" ");
 
+		//본인의 자식을 큐에 넣음
 		enqueue(&q.head, &q.tail, node->left);
 		enqueue(&q.head, &q.tail, node->right);		
 	}	
