@@ -117,6 +117,7 @@ int balanced(char *expression)
 		char item = expression[i];
 		switch (item)
 		{
+		//여는 괄호일때 push
 		case '(':
 			push(&opens, 1);
 			break;
@@ -126,6 +127,7 @@ int balanced(char *expression)
 		case '{':
 			push(&opens, 3);
 			break;
+		//닫는 괄호일때 pop
 		case ')':
 			popi=pop(&opens);
 			if(popi != 1){
@@ -144,6 +146,7 @@ int balanced(char *expression)
 				return 1;
 			}
 			break;
+		//괄호가 아닐때 종료로 생각
 		default:
 			if(opens.ll.size == 0){
 				return 0;

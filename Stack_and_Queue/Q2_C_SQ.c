@@ -113,7 +113,6 @@ int main()
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-    /* add your code here */
 	//아래 함수써서 비우고 시작
 	if( s->ll.size != 0){
 		removeAllItemsFromStack(s);

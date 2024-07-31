@@ -111,13 +111,17 @@ int main()
 
 void removeUntil(Stack *s, int value)
 {
-/* add your code here */
-	while(s->ll.size != 0){
-		if(s->ll.head->item == value){
-			return;
-		}
-		pop(s);
-	}
+   if (s->ll.head == NULL)
+      return;
+
+   // value가 처음 나타날 때까지
+   while (!isEmptyStack(s)){
+      if (s->ll.head->item == value)
+         return;
+      
+      // stack의 값 pop
+      pop(s);
+   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////

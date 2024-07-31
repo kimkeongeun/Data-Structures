@@ -116,7 +116,7 @@ void recursiveReverse(Queue *q)
 		return;
 	}
 	
-
+	//큐에 있는걸 모두 뺀 다음, 재귀 이용해서 마지막것부터 다시 넣음
 	num = dequeue(q);
 	recursiveReverse(q);
 	enqueue(q, num);

@@ -116,6 +116,7 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
+	LinkedList *l2 = &(q->ll);
 	//만약에 큐가 비어있지 않다면
 	//아래 함수써서 비우고 시작
 	if( q->ll.size != 0){

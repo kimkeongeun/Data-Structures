@@ -113,9 +113,8 @@ int main()
 void reverse(Queue *q)
 {
 	Stack s;
-	s.ll.head = NULL;
+	s.ll.head = s.ll.tail = NULL;
 	s.ll.size = 0;
-	s.ll.tail = NULL;
 
 	int num = 0;
 
@@ -126,7 +125,6 @@ void reverse(Queue *q)
 	}
 
 	//스택에 있는걸 다 큐에 넣음
-
 	while(s.ll.size != 0){
 		num = pop(&s);
 		enqueue(q, num);
